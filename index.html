@@ -37,11 +37,16 @@
 
 		$.ajax({
 
-			beforeSend: function(request) {
-				request.setRequestHeader("Accept", "application/json");
-				request.setRequestHeader("app_id", "e81f9277");
-				request.setRequestHeader("app_key", "258c29116aae482d725196816251b2c2");
-  				},
+			// beforeSend: function(request) {
+			// 	request.setRequestHeader("Accept", "application/json");
+			// 	request.setRequestHeader("app_id", "e81f9277");
+			// 	request.setRequestHeader("app_key", "258c29116aae482d725196816251b2c2");
+  	// 			},
+  			headers: {
+				"Accept": "application/json",
+				"app_id": "e81f9277",
+				"app_key": "258c29116aae482d725196816251b2c2"
+			},
 			url: queryURL,
 			method: "GET"
 
