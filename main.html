@@ -4,43 +4,73 @@
 	<title>main page</title>
 
 
-<link rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
+<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
+<!-- To ensure proper rendering and touch zooming -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-
-<style>
-
-
-
-
-</style>
 </head>
 
 <body>
-<form>
 
-<!-- user would enter in word they want to find the definition of -->
-enter word:<input type="text"  name="word-search" >
-</form>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-offset-1 bgstyle">
+<!-- 				logo with link goes here -->
+			
+				<div class="col-md-6">
+				    <form role="form">
+			            <div class="form-group">
+			            	<!-- user would enter in word they want to find the definition of -->
+			                <label for="word-input">enter word</label>
+			                <input class="form-control" id="user-input" type="text">
+			            </div>
+			            <!-- when selected button will display definition of word located in input section --> 
 
-<!-- when selected button will display definition of word located in input section --> 
-<button id="button1">search</button>
+			            <button class="btn btn-primary" id="search" type="submit">Search</button>
+			    <!-- when selected it will take user to a new page that displays list of favorite words -->
+			    <div class="row">
+			   		 <div class="col-md-6">
+			            <button class="btn btn-primary" id="search" type="submit">Favorite Words</button>
+			        </div>
+			    </div>
 
-<!-- when selected it will take user to a new page that displays list of favorite words -->
-<button id = "button2"> favorite words</button>
+			    <!-- when selected it will take the user to a new page that displays the challenge word of the day -->
+			    <div class="row">
+			   		 <div class="col-md-6">
+			            <button class="btn btn-primary" id="search" type="submit">Challenge Word</button>
+			        </div>
+			    </div>
 
-<!-- when selected it will take the user to a new page that displays the challenge word of the day -->
-<button id="button3">challenge</button>
+			    <!-- when selected user would be logged out of their profile and be brought to the log in screen -->
+			    <div class="row">
+			   		 <div class="col-md-6">			       
+			          	<button id="button4">log out</button>
+			        </div>
+			    </div>
 
-<!-- when selected user would be logged out of their profile and be brought to the log in screen -->
-<button id="button4">log out</button>
+			        </form>
+			    </div>
+			</div>
+		</div>
+	</div>
+			
 
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 
+
+<script src="https://code.jquery.com/jquery.js"></script>
+<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+<script type="text/javascript" src="assets/javascript/game.js"></script>
+
+<!-- add javascript to individual page -->
 <script type="text/javascript">
+
+
+</script>
 
 
 

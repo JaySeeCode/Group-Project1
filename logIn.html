@@ -3,49 +3,61 @@
 <head>
 	<title>log in</title>
 
-
-<link rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-<h1>Hi</h1>
+<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
+<!-- To ensure proper rendering and touch zooming -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
+</head>
 
+<!-- create a logo for every page that links to the main page -->
 
-<style>
+	<!-- user enters in username and password to log into the program -->
+	<div class="container">
+		<div class="row">
+			<div class="col-md-offset-1 bgstyle">
+				<h3>The ultimate guide to word discovery.</h3>
+				<div class="col-md-6">
+				    <form role="form">
+			            <div class="form-group">
+			                <label for="username-input">Username</label>
+			                <input class="form-control" id="train-input" type="text">
+			            </div>
+			        </form>
+			    </div>
+				<div class="col-md-6">
+                    <form role="form">
+			            <div class="form-group">
+			                <label for="password-input">Password</label>
+			                <input class="form-control" id="train-input" type="text">
+			            </div>
+			        </form>
+			    </div>
+			<div class="row">
+				<div class="col-md-offset-1 bgstyle">
+						<!-- when selected the system will check to make sure the username and password match what is in the system. -->
+						<button class="btn btn-primary" id="login" type="submit"><a href="main.html" class="link-style">Login</a></button>
+						<!-- if the user does not have an account with the word up app then they can create a profile -->
+						<button class="btn btn-primary" id="signUp" type="submit">Sign Up</button>
+					</div>
+				</div>
+		</div>
+	</div>
 
-
-
-
-</style>
 </head>
 
 <body>
 
+<script src="https://code.jquery.com/jquery.js"></script>
+<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+<script type="text/javascript" src="assets/javascript/game.js"></script>
 
-<div class="titlepage">
-
-
-<!-- user enters in username and password to log into the program -->
-<form>
-Username:<input type="text"  name="username" >
-<br>
-Password: <input type="text"  name="password" >
-</form>
-
-<!-- when selected the system will check to make sure the username and password match what is in the system. -->
-<button id="submit-login">login</button>
-
-<!-- if the user does not have an account with the word up app then they can create a profile -->
-<button id="sign-up">sign up</button>
-</div>
-
-
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-
+<!-- add javascript to individual page -->
 <script type="text/javascript">
-
 
 
 </script>

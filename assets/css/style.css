@@ -1,0 +1,17 @@
+.bgstyle {
+	background-color: #f8f8f8;
+	padding: 20px;
+}
+
+.link-style {
+	color: white;
+}
+
+.col-centered {
+    display:inline-block;
+    float:none;
+    /* reset the text-align */
+    text-align:left;
+    /* inline-block space fix */
+    margin-right:-4px;
+}
