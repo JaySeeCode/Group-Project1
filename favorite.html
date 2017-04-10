@@ -1,41 +1,65 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Favorite Page</title>
+<head lang='en'>
+
+	<title>Main Page - Welcome</title>
 
 
-<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
-<!-- To ensure proper rendering and touch zooming -->
-<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- To ensure proper rendering and touch zooming -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 
+	<script src="http://code.responsivevoice.org/responsivevoice.js"></script>
+
+	<style>
+		.glyphstyle{
+			font-size: 20px;
+		}
+
+	</style>
 
 </head>
-
 <body>
-<h1>favorite words</h1>
+
+	<!-- Navigation Bar -->
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">Word App</a>
+			</div>	
+			<ul class="nav navbar-nav navbar-right">
+				<li class="active"><a href="main_2.html">Search</a></li>
+				<li><a href="favorite.html">Favorites</a></li>
+				<li><a href="challenge.html">Challenge</a></li>
+				<!-- when selected user would be logged out of their profile and be brought to the log in screen -->
+				<li><a href="login">Log Out</a></li>
+			</ul>
+		</div>
+	</nav>
 
 
-<!-- //button id would be a div that we would reference in javascript and each time a favorite word is created, it would create a button-->
-<button id="word">word</button>
-
-<!-- main page button takes you back to the main page -->
-<button id="mainPage">main page</button>
 
 
-<script src="https://code.jquery.com/jquery.js"></script>
-<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
-<script type="text/javascript" src="assets/javascript/game.js"></script>
-
-<!-- add javascript to individual page -->
-<script type="text/javascript">
 
 
-</script>
+
+
+
+	<script type="text/javascript">
+
+
+
+
+
+
+	</script>
 
 </body>
 

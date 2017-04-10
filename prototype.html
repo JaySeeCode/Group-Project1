@@ -95,10 +95,37 @@
 
 	<script type="text/javascript">
 
+		//VARIABLES
+
 		//these are the words for the daily challenge.
-		var wordsList = [
-			""
-		];
+		var wordsList = [];
+
+		//an empty array to hold the favorite words
+		var favWord = [];
+
+		//FUNCTIONS	
+
+
+
+		// =============================================
+
+
+
+		  // Initialize Firebase
+		  var config = {
+		  	apiKey: "AIzaSyBHzsuJjRTjI63IifVncdfhyav-GYuzVR0",
+		  	authDomain: "team-gosling.firebaseapp.com",
+		  	databaseURL: "https://team-gosling.firebaseio.com",
+		  	projectId: "team-gosling",
+		  	storageBucket: "team-gosling.appspot.com",
+		  	messagingSenderId: "440069700680"
+		  };
+		  firebase.initializeApp(config);
+
+		  var database = firebase.database();
+
+
+		  // =============================================
 
 		
 
@@ -121,6 +148,8 @@
 			//URL to be passed to the API for request. Notice how word is dinamically inserted into 
 			//URL
 			var queryURL = 'https://fathomless-plains-61908.herokuapp.com/dictionary/entries/en/' + "" + word + "" ;
+
+
 
 			//This is where our AJAX call begins
 			$.ajax({

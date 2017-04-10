@@ -18,6 +18,9 @@
 
 	<script src="http://code.responsivevoice.org/responsivevoice.js"></script>
 
+	 <!-- LINK TO FIREBASE GOES HERE -->
+  	<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+
 	<style>
 		.glyphstyle{
 			font-size: 20px;
@@ -97,7 +100,26 @@
 		var wordsList = [];
 
 		//an empty array to hold the favorite words
-		var favWords = [];
+		// var favWords = [];
+
+		// =============================================
+
+
+		  // Initialize Firebase
+		  var config = {
+		  	apiKey: "AIzaSyBHzsuJjRTjI63IifVncdfhyav-GYuzVR0",
+		  	authDomain: "team-gosling.firebaseapp.com",
+		  	databaseURL: "https://team-gosling.firebaseio.com",
+		  	projectId: "team-gosling",
+		  	storageBucket: "team-gosling.appspot.com",
+		  	messagingSenderId: "440069700680"
+		  };
+		  firebase.initializeApp(config);
+
+		  var database = firebase.database();
+
+
+		  // =============================================
 
 
 		$('#search').on("click", function(){
@@ -121,12 +143,28 @@
 				//if the word variable is not an empty string, the push it into the favorite words
 				//array. after you do that, clear that value of the word variable
 				if(word !== ''){
-					favWords.push(word);
-					console.log(favWords);
+					
+					//if the word isn't an empty string, send it to the database 
+					console.log("sending to database...");
+					database.ref().push({
+					favoriteWordEntry: word
+					});
+					console.log("sent");
+					console.log("=========");
+
 					word = '';
+					// database.ref().on("value", function(snapshot){
+
+					// 	var sv = snapshot.val();
+
+					// 	console.log(sv);
+					// 	console.log(Object.keys(sv));
+
+					// });
+
 				}
 
-				//now we need to send this information to the database so that we can dynamically add favorite words to the favorite words section as they enter the database. 
+
 				
 			});
 
