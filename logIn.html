@@ -12,6 +12,9 @@
 <!-- To ensure proper rendering and touch zooming -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/3.7.5/firebase.js"></script>
+
 </head>
 
 <!-- create a logo for every page that links to the main page -->
@@ -24,25 +27,20 @@
 				<div class="col-md-6">
 				    <form role="form">
 			            <div class="form-group">
-			                <label for="username-input">Username</label>
-			                <input class="form-control" id="train-input" type="text">
-			            </div>
-			        </form>
-			    </div>
-				<div class="col-md-6">
-                    <form role="form">
-			            <div class="form-group">
-			                <label for="password-input">Password</label>
-			                <input class="form-control" id="train-input" type="text">
+			                <input type="email"  id="txtEmail" placeholder=" enter email">
+			       
+			                <input type="password"  id="txtPassword" placeholder=" enter password">
 			            </div>
 			        </form>
 			    </div>
 			<div class="row">
 				<div class="col-md-offset-1 bgstyle">
 						<!-- when selected the system will check to make sure the username and password match what is in the system. -->
-						<button class="btn btn-primary" id="login" type="submit"><a href="main.html" class="link-style">Login</a></button>
+						<button class="btn btn-primary" id="btnLogin" type="submit" class="link-style">Login</a></button>
 						<!-- if the user does not have an account with the word up app then they can create a profile -->
-						<button class="btn btn-primary" id="signUp" type="submit">Sign Up</button>
+						<button class="btn btn-primary" id="btnSignUp" type="submit">Sign Up</button>
+						<!-- logout button remains hidden -->
+						<button class="btn btn-primary hide" id="btnLogout" type="submit">Log Out</button>
 					</div>
 				</div>
 		</div>
@@ -54,10 +52,65 @@
 
 <script src="https://code.jquery.com/jquery.js"></script>
 <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
-<script type="text/javascript" src="assets/javascript/game.js"></script>
 
 <!-- add javascript to individual page -->
+
 <script type="text/javascript">
+
+  var config = {
+    apiKey: "AIzaSyDv-oNf2sVhsV2E9A4GprtVsMGjRNz54fo",
+    authDomain: "word-app-login.firebaseapp.com",
+    databaseURL: "https://word-app-login.firebaseio.com",
+    projectId: "word-app-login",
+    storageBucket: "word-app-login.appspot.com",
+    messagingSenderId: "302008915673"
+  };
+  firebase.initializeApp(config);
+
+  //Get Elements
+  const txtEmail = document.getElementById('txtEmail');
+  const txtPassword = document.getElementById('txtPassword');
+  const btnLogin = document.getElementById('btnLogin');
+  const btnSignUp = document.getElementById('btnSignUp');
+  const btnLogout = document.getElementById('btnLogout');
+
+  //Add Login Event
+
+  btnLogin.addEventListener('click', e =>{
+  	//Get email and password
+  	const email = txtEmail.value;
+  	const pass = txtPassword.value;
+  	const auth = firbase.auth();
+
+  	//Sign in
+  	const promise = auth.signInWithEmailAndPassword(email, pass);
+  	promise.catch(e => console.log(e.message));
+  })
+
+  //Add Signup Event
+  btnSignUp.addEventListener('click', e =>{
+  	//Get email and pass
+  	//TODO: check for real emails!
+  	const email = txtEmail.value;
+  	const pass = txtPassword.value;
+  	const auth = firebase.auth();
+  	//Sign In
+  	const promise = auth.createUserWithEmailAndPassword(email, pass);
+  	promise
+  		.catch(e => console.log(e.message));
+
+  })
+
+
+  // Add a realtime listener
+  firebase.auth().onAuthStateChanged(firebaseUser => {
+  	if(firebaseUser){
+  		console.log(firebaseUser)
+  		btnLogout.classList.remove('hide');
+  	} else {
+  		console.log('not logged in');
+  	}
+  }) 
 
 
 </script>
