@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+<head lang='en'>
+
+	<title>Main Page - Welcome</title>
+
+
+	<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+	<!-- To ensure proper rendering and touch zooming -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+	<script src="http://code.responsivevoice.org/responsivevoice.js"></script>
+
+	<style>
+		.glyphstyle{
+			font-size: 20px;
+		}
+
+	</style>
+
+</head>
+
+<body>
+
+	<!-- Navigation Bar -->
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">Word App</a>
+			</div>	
+			<ul class="nav navbar-nav navbar-right">
+				<li class="active"><a href="#">Search</a></li>
+				<li><a href="favorite.html">Favorites</a></li>
+				<li><a href="challenge.html">Challenge</a></li>
+				<!-- when selected user would be logged out of their profile and be brought to the log in screen -->
+				<li><a href="login">Log Out</a></li>
+			</ul>
+		</div>
+	</nav>
+
+	<div class="container">
+
+		<div class="row">
+			<div class="col-md-3"></div>
+			<div class="col-md-6">
+				<form>
+					<!-- user would enter in word they want to find the definition of -->
+					<!-- <label for="word-entry">Enter a word: </label> -->
+					<input type="text"  id="input" placeholder="enter a word">
+					<!-- when selected button will display definition of word located in input section --> 
+					<button class="btn btn-default button-style" id="search"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+
+					<!-- when selected it will take user to a new page that displays list of favorite words -->
+					<button class="btn btn-default button-style" id="add-to-favorites"><span class="glyphicon glyphicon-star" aria-hidden="true"></button>
+				</form>
+
+			</div>
+			<div class="col-md-3"></div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-3"></div>
+
+			<div class="col-md-6">
+
+
+				<div id="word-dumpster">
+
+					<!-- here the word and its type will be properly formatted
+					and displayed -->
+					<div id="word-info">
+					</div>
+
+					<div id="word-definition">
+					</div>
+				</div>
+
+			<div class="col-md-3"></div>
+
+			</div>
+		</div>
+
+
+	</div>
+
+
+	<script type="text/javascript">
+
+		//these are the words for the daily challenge.
+		var wordsList = [];
+
+		//an empty array to hold the favorite words
+		var favWords = [];
+
+
+		$('#search').on("click", function(){
+
+			//Prevents button from submitting form
+			event.preventDefault();
+
+			// //declares an empty variable to hold user input
+			// var word = "";
+
+			//catches user input, trims white space on ends, and makes it all lower case
+			var word = ($('#input').val().trim()).toLowerCase();
+
+			//all this does is clear the text form after the search button is activated.
+			//it sets the value of the html element with id #input to an empty string
+			$('#input').val('');
+
+			$('#add-to-favorites').on("click", function(){
+				event.preventDefault();
+
+				//if the word variable is not an empty string, the push it into the favorite words
+				//array. after you do that, clear that value of the word variable
+				if(word !== ''){
+					favWords.push(word);
+					console.log(favWords);
+					word = '';
+				}
+
+				//now we need to send this information to the database so that we can dynamically add favorite words to the favorite words section as they enter the database. 
+				
+			});
+
+
+			//URL to be passed to the API for request. Notice how word is dinamically inserted into 
+			//URL
+			var queryURL = 'https://fathomless-plains-61908.herokuapp.com/dictionary/entries/en/' + "" + word + "" ;
+
+			
+
+			//This is where our AJAX call begins
+			$.ajax({
+				url: queryURL,
+				method: "GET"
+
+			}).done(function(response){
+
+				console.log(response);
+
+				console.log("Will use this to check whether there are examples sentences available or not: ");
+				console.log(Object.keys(response.results[0].lexicalEntries[0].entries[0].senses[0]));
+
+				// console.log("# OF LEXICAL ENTRIES: " + (response.results[0].lexicalEntries).length + "... meaning, there's more than one word type.");
+
+				// console.log("lexicalEntries[i] > entries[i] > senses[i]: "+(response.results[0].lexicalEntries[0].entries[0].senses).length + "... meaning we have 5 available definitions");
+
+
+				//this conditional structure helps us determine whether the word is available
+				//in more than one type... that is, adjective, noun, or verb.
+				//if the words is only available in one form, we do one thing. but if it is
+				//available in more than one type, we do something else...
+
+				if ((response.results[0].lexicalEntries).length > 1){
+
+					//there is more than one lexical entry
+
+					var numOfDefinitions = (response.results[0].lexicalEntries[0].entries[0].senses).length;
+
+					var numOfLexicalEntries = (response.results[0].lexicalEntries).length;
+
+
+					var $title = '<h2>' + word + ' ' + '<span class="glyphicon glyphicon-volume-up glyphstyle" aria-hidden="true" id="speak"></span>' + '</h2>';
+
+					//empties the #word-info container
+					$('#word-info').empty();
+					$('#word-definition').html($title);
+
+					$('#speak').on("click", function(){
+
+
+						responsiveVoice.speak(word, "US English Female");
+
+					});
+
+
+					//this loop, in essence, is used to grab and display information about the word
+					//that was searched, such as wordType, and multiple possible definitions.
+					for (var i = 0; i < numOfLexicalEntries; i++) {
+
+						var wordType = (response.results[0].lexicalEntries[i].lexicalCategory).toLowerCase();
+
+						var $type = '<h4>' + wordType + '</h4>';
+
+						$('#word-definition').append($type);
+
+						for (var ii = 0; ii < numOfDefinitions; ii++) {
+
+
+							var $definition = '<strong>' + (ii+1) + '</strong>' + " " + response.results[0].lexicalEntries[0].entries[0].senses[ii].definitions[0];
+
+							$('#word-definition').append($definition);
+
+							//here we're storing the contents of the senses array to check whether or not there is an 'examples' key
+							var senses = Object.keys(response.results[0].lexicalEntries[0].entries[0].senses[ii]);
+
+							//if there are examples sentences... display them
+							if(senses.indexOf("examples")){
+								// console.log("there are example sentences");
+								var exampleSentence = response.results[0].lexicalEntries[0].entries[0].senses[ii].examples[0].text;
+
+								$('#word-definition').append(": " + "<i>"+ exampleSentence + "</i>" + "." + "<br />" + "<br />");
+							}
+							else{
+								//nothing
+							}
+
+
+						};
+
+
+					};
+
+				}else{
+
+					//there is only one lexical entry
+
+					var definition = response.results[0].lexicalEntries[0].entries[0].senses[0].definitions[0];
+
+					var wordType = (response.results[0].lexicalEntries[0].lexicalCategory).toLowerCase();
+
+                    var examples = response.results[0].lexicalEntries[0].entries[0].senses[0].examples;
+
+					var exampleSentence = '';
+					if ( examples ) {
+ 					  exampleSentence = ": " + "<i>"+ examples[0].text + "</i>" + ".";
+					}
+
+					//this looks horrible to the eye.
+					var $wordInfo = '<h2>' + word + ' ' + '<span class="glyphicon glyphicon-volume-up glyphstyle" aria-hidden="true" id="speak"></span>' + "</h2>" +
+					'<h4>' + wordType + '</h4>';
+
+
+					//when we placed the click event here, it didn't work. WHYYYYY
+
+
+					$('#word-info').empty();
+					$('#word-info').html($wordInfo);
+					$('#word-definition').html(definition);
+					$('#word-definition').append(exampleSentence);
+
+					$('#speak').on("click", function(){
+
+						console.log("inside click event");
+						responsiveVoice.speak(word,  "US English Female");
+
+					});
+				};
+
+			});
+
+
+		});
+
+
+
+	</script>
+
+<!-- first, we look into the lexicalEntries array to check whether or not there is more than one entry for the word that was searched... so for instance, the word "front" has three lexicalEntries. One is for "front" as a Noun, the other as an Adjective, and lastly as a Verb... So, here is where the branching of our conditionals needs to start happenning. does the returned word have more than one lexical entry? if there is only one, we go in this direction... if it has more than one, we go in this other direction.
+
+if it has only one, we grab the definition and display it. if the word has more than one definition within the senses ARRAY, then we need to iterate through that array, and display all definitions that are available to us.
+
+furthermore, not only do we grab the definition, but we also grab the example sentence... for which we need to check first. we need to make sure whether there is an examples array within the object that holds the definitions... before we continue, it happens like this... entries is an array of objects. within the object in the first index, there are several properties, which themselves are arrays of objects. inside the object of the entries array, there is a property called "senses", which is, as aforementioned, an array of objects. each object within that array holds properties such as "definitions," and "examples". these are themselves arrays. we need to constantly be checking for whether an "examples" property exists or not. THIS IS MORE IMPORTANT THAN CHECKING FOR MULTIPLE DEFINITIONS. why? because if there is no example sentence and we try to display one, we will get an error. on the other hand, if there are multiple definitions and we grab one, then we will only be displaying one definition. this can be easily fixed.  -->
+
+<!-- for various definitions... the format ought to look like this...
+		WORD
+		wordType
+
+		1 definition1: example sentence
+		2 definition2: example sentence
+		3 definition3: example sentence
+
+		wordType
+
+		1 definition1: example sentence
+		2 definition2: example sentence
+		3 definition3: example sentence
+
+		wordType
+
+		1 definition1: example sentence
+		2 definition2: example sentence
+		3 definition3: example sentence
+
+		etc -->
+
+</body>
+
+
+</html>

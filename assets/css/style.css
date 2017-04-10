@@ -15,3 +15,20 @@
     /* inline-block space fix */
     margin-right:-4px;
 }
+
+input {
+	width: 75%;
+	height: 40px;
+	border-radius: 10px;
+	border-style: solid;
+	border-width: 1px;
+}
+
+.button-style {
+	border-style: none;
+}
+
+input[type=submit]:hover {
+     background-position: 0px;
+}
+
