@@ -9,7 +9,11 @@
 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
+<<<<<<< HEAD
+<link rel="stylesheet" href="assets/css/font-awesome.css">
+=======
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+>>>>>>> 8a061fada4fc920b2e8b8ae2c29b241c0f1fecff
 
 	<!-- To ensure proper rendering and touch zooming -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -28,10 +32,20 @@
 
 	</style>
 
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<script src="https://use.fontawesome.com/559c51d706.js"></script>
+
+<script src="http://code.responsivevoice.org/responsivevoice.js"></script>
+
+
+
+
 </head>
 
 <body>
 
+<<<<<<< HEAD
 	<!-- Navigation Bar -->
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
@@ -46,6 +60,27 @@
 				<li><a href="login">Log Out</a></li>
 			</ul>
 		</div>
+=======
+
+	<nav class="navbar navbar-inverse nav-style navbar-fixed-top">
+	 	<div class="container-fluid">
+	   		<div class="navbar-header">
+	     		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+	       		<span class="icon-bar"></span>
+	       		<span class="icon-bar"></span>
+	       		<span class="icon-bar"></span>                        
+	      		</button>
+	      		<a class="navbar-brand" href="main_2.html">Word Up</a>
+	    	</div>
+	    	<div class="collapse navbar-collapse navbar-right" id="myNavbar">
+	      		<ul class="nav navbar-nav">
+	       			<li class="active"><a href="main_2.html"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>&nbsp;Search</a></li>
+	        		<li><a href="favorite.html"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>&nbsp;  Favorites</a></li>
+	        		<li><a href="challenge.html"><i class="fa fa-trophy" aria-hidden="true"></i>&nbsp; Challenge</a>		</li>
+	      		</ul>
+	   		 </div>
+	  	</div>
+>>>>>>> 23459ef0ed69a4274400630fb8da1b915fbc7fd1
 	</nav>
 
 	<div class="container">
@@ -55,13 +90,17 @@
 			<div class="col-md-6">
 				<form>
 					<!-- user would enter in word they want to find the definition of -->
-					<!-- <label for="word-entry">Enter a word: </label> -->
-					<input type="text"  id="input" placeholder="enter a word">
+					<input type="text"  id="input" placeholder=" enter a word">
 					<!-- when selected button will display definition of word located in input section --> 
-					<button class="btn btn-default button-style" id="search"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+					<button class="button-style" id="search"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
 
+<<<<<<< HEAD
+				<!-- when selected it will take user to a new page that displays list of favorite words -->
+				<button class="button-style" id="button2"><span class="glyphicon glyphicon-star" aria-hidden="true"></button>
+=======
 					<!-- when selected it will take user to a new page that displays list of favorite words -->
 					<button class="btn btn-default button-style" id="add-to-favorites"><span class="glyphicon glyphicon-star" aria-hidden="true"></button>
+>>>>>>> 8a061fada4fc920b2e8b8ae2c29b241c0f1fecff
 				</form>
 
 			</div>
@@ -94,7 +133,8 @@
 	</div>
 
 
-	<script type="text/javascript">
+			<script type="text/javascript">
+<script type="text/javascript">
 
 		//these are the words for the daily challenge.
 		var wordsList = [];
@@ -301,35 +341,32 @@
 
 
 	</script>
+	</script>
 
 <!-- first, we look into the lexicalEntries array to check whether or not there is more than one entry for the word that was searched... so for instance, the word "front" has three lexicalEntries. One is for "front" as a Noun, the other as an Adjective, and lastly as a Verb... So, here is where the branching of our conditionals needs to start happenning. does the returned word have more than one lexical entry? if there is only one, we go in this direction... if it has more than one, we go in this other direction.
+>>>>>>> 8a061fada4fc920b2e8b8ae2c29b241c0f1fecff
 
-if it has only one, we grab the definition and display it. if the word has more than one definition within the senses ARRAY, then we need to iterate through that array, and display all definitions that are available to us.
+					$('#word-info').empty();
+					$('#word-info').html($wordInfo);
+					$('#word-definition').html(definition);
+					$('#word-definition').append(": " + "<i>"+ exampleSentence + "</i>" + ".");
 
-furthermore, not only do we grab the definition, but we also grab the example sentence... for which we need to check first. we need to make sure whether there is an examples array within the object that holds the definitions... before we continue, it happens like this... entries is an array of objects. within the object in the first index, there are several properties, which themselves are arrays of objects. inside the object of the entries array, there is a property called "senses", which is, as aforementioned, an array of objects. each object within that array holds properties such as "definitions," and "examples". these are themselves arrays. we need to constantly be checking for whether an "examples" property exists or not. THIS IS MORE IMPORTANT THAN CHECKING FOR MULTIPLE DEFINITIONS. why? because if there is no example sentence and we try to display one, we will get an error. on the other hand, if there are multiple definitions and we grab one, then we will only be displaying one definition. this can be easily fixed.  -->
+					$('#speak').on("click", function(){
 
-<!-- for various definitions... the format ought to look like this...
-		WORD
-		wordType
+						console.log("inside click event");
+						responsiveVoice.speak(word,  "US English Female");
 
-		1 definition1: example sentence
-		2 definition2: example sentence
-		3 definition3: example sentence
+					});
+				};
 
-		wordType
+			});
 
-		1 definition1: example sentence
-		2 definition2: example sentence
-		3 definition3: example sentence
 
-		wordType
+		});
 
-		1 definition1: example sentence
-		2 definition2: example sentence
-		3 definition3: example sentence
 
-		etc -->
 
+	</script>
 </body>
 
 
