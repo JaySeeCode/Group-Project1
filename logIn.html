@@ -57,13 +57,14 @@
 
 <script type="text/javascript">
 
+   // Initialize Firebase
   var config = {
-    apiKey: "AIzaSyDv-oNf2sVhsV2E9A4GprtVsMGjRNz54fo",
-    authDomain: "word-app-login.firebaseapp.com",
-    databaseURL: "https://word-app-login.firebaseio.com",
-    projectId: "word-app-login",
-    storageBucket: "word-app-login.appspot.com",
-    messagingSenderId: "302008915673"
+    apiKey: "AIzaSyBHzsuJjRTjI63IifVncdfhyav-GYuzVR0",
+    authDomain: "team-gosling.firebaseapp.com",
+    databaseURL: "https://team-gosling.firebaseio.com",
+    projectId: "team-gosling",
+    storageBucket: "team-gosling.appspot.com",
+    messagingSenderId: "440069700680"
   };
   firebase.initializeApp(config);
 
@@ -80,7 +81,7 @@
   	//Get email and password
   	const email = txtEmail.value;
   	const pass = txtPassword.value;
-  	const auth = firbase.auth();
+  	const auth = firebase.auth();
 
   	//Sign in
   	const promise = auth.signInWithEmailAndPassword(email, pass);
@@ -110,7 +111,12 @@
   	} else {
   		console.log('not logged in');
   	}
-  }) 
+  }); 
+
+  btnLogout.addEventListener('click', e=>{
+    firebase.auth().signOut();
+    console.log("logged out");
+  });
 
 
 </script>

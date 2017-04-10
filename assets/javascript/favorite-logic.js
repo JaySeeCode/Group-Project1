@@ -26,20 +26,17 @@ database.ref().on("child_added", function(childSnapshot){
 
 	var $entry = '<li>' + key + '</li>';
 
-
-	// $('#list').prepend(sv.favoriteWordEntry, $button);
 	$('#list').prepend($entry, $button);
 
 	$('.removeButton').on("click", function(){
 
-		console.log($(this).attr("key"));
+		// console.log($(this).attr("key"));
 
-		var wordToRemove = $(this).attr("key");
+		// var wordToRemove = $(this).attr("key");
 
-		var entryRef = database.ref('favoriteWordEntry');
-
-
-		// database.child(wordToRemove).removeValue();
+		// var entryRef = database.ref('favoriteWordEntry');
+		console.log("here");
+		database.ref().child($(this).attr("key")).remove();
 
 	});
 
