@@ -95,6 +95,38 @@
 
 	<script type="text/javascript">
 
+		//VARIABLES
+
+		//these are the words for the daily challenge.
+		var wordsList = [];
+
+		//an empty array to hold the favorite words
+		var favWord = [];
+
+		//FUNCTIONS	
+
+
+
+		// =============================================
+
+
+
+		  // Initialize Firebase
+		  var config = {
+		  	apiKey: "AIzaSyBHzsuJjRTjI63IifVncdfhyav-GYuzVR0",
+		  	authDomain: "team-gosling.firebaseapp.com",
+		  	databaseURL: "https://team-gosling.firebaseio.com",
+		  	projectId: "team-gosling",
+		  	storageBucket: "team-gosling.appspot.com",
+		  	messagingSenderId: "440069700680"
+		  };
+		  firebase.initializeApp(config);
+
+		  var database = firebase.database();
+
+
+		  // =============================================
+
 		
 
 		$('#search').on("click", function(){
@@ -102,11 +134,11 @@
 			//Prevents button from submitting form
 			event.preventDefault();
 
-			//declares an empty variable to hold user input
-			var word = "";
+			// //declares an empty variable to hold user input
+			// var word = "";
 
 			//catches user input, trims white space on ends, and makes it all lower case
-			word = ($('#input').val().trim()).toLowerCase();
+			var word = ($('#input').val().trim()).toLowerCase();
 
 			//all this does is clear the text form after the search button is activated.
 			//it sets the value of the html element with id #input to an empty string
@@ -116,6 +148,8 @@
 			//URL to be passed to the API for request. Notice how word is dinamically inserted into 
 			//URL
 			var queryURL = 'https://fathomless-plains-61908.herokuapp.com/dictionary/entries/en/' + "" + word + "" ;
+
+
 
 			//This is where our AJAX call begins
 			$.ajax({
@@ -207,7 +241,12 @@
 
 					var wordType = (response.results[0].lexicalEntries[0].lexicalCategory).toLowerCase();
 
-					var exampleSentence = response.results[0].lexicalEntries[0].entries[0].senses[0].examples[0].text;
+                    var examples = response.results[0].lexicalEntries[0].entries[0].senses[0].examples;
+
+					var exampleSentence = '';
+					if ( examples ) {
+ 					  exampleSentence = ": " + "<i>"+ examples[0].text + "</i>" + ".";
+					}
 
 					//this looks horrible to the eye.
 					var $wordInfo = '<h2>' + word + ' ' + '<span class="glyphicon glyphicon-volume-up glyphstyle" aria-hidden="true" id="speak"></span>' + "</h2>" +
@@ -220,7 +259,7 @@
 					$('#word-info').empty();
 					$('#word-info').html($wordInfo);
 					$('#word-definition').html(definition);
-					$('#word-definition').append(": " + "<i>"+ exampleSentence + "</i>" + ".");
+					$('#word-definition').append(exampleSentence);
 
 					$('#speak').on("click", function(){
 

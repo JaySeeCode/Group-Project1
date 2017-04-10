@@ -5,19 +5,32 @@
 	<title>Main Page - Welcome</title>
 
 
-<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
+<<<<<<< HEAD
 <link rel="stylesheet" href="assets/css/font-awesome.css">
+=======
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+>>>>>>> 8a061fada4fc920b2e8b8ae2c29b241c0f1fecff
 
-
-<link rel="stylesheet" type="text/css" href="assets/css/style.css">
-
-<!-- To ensure proper rendering and touch zooming -->
-<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- To ensure proper rendering and touch zooming -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+	<script src="http://code.responsivevoice.org/responsivevoice.js"></script>
+
+	 <!-- LINK TO FIREBASE GOES HERE -->
+  	<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+
+	<style>
+		.glyphstyle{
+			font-size: 20px;
+		}
+
+	</style>
 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
@@ -64,8 +77,13 @@
 					<!-- when selected button will display definition of word located in input section --> 
 					<button class="button-style" id="search"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
 
+<<<<<<< HEAD
 				<!-- when selected it will take user to a new page that displays list of favorite words -->
 				<button class="button-style" id="button2"><span class="glyphicon glyphicon-star" aria-hidden="true"></button>
+=======
+					<!-- when selected it will take user to a new page that displays list of favorite words -->
+					<button class="btn btn-default button-style" id="add-to-favorites"><span class="glyphicon glyphicon-star" aria-hidden="true"></button>
+>>>>>>> 8a061fada4fc920b2e8b8ae2c29b241c0f1fecff
 				</form>
 
 			</div>
@@ -99,28 +117,86 @@
 
 
 			<script type="text/javascript">
+<script type="text/javascript">
 
-		
+		//these are the words for the daily challenge.
+		var wordsList = [];
+
+		//an empty array to hold the favorite words
+		// var favWords = [];
+
+		// =============================================
+
+
+		  // Initialize Firebase
+		  var config = {
+		  	apiKey: "AIzaSyBHzsuJjRTjI63IifVncdfhyav-GYuzVR0",
+		  	authDomain: "team-gosling.firebaseapp.com",
+		  	databaseURL: "https://team-gosling.firebaseio.com",
+		  	projectId: "team-gosling",
+		  	storageBucket: "team-gosling.appspot.com",
+		  	messagingSenderId: "440069700680"
+		  };
+		  firebase.initializeApp(config);
+
+		  var database = firebase.database();
+
+
+		  // =============================================
+
 
 		$('#search').on("click", function(){
 
 			//Prevents button from submitting form
 			event.preventDefault();
 
-			//declares an empty variable to hold user input
-			var word = "";
+			// //declares an empty variable to hold user input
+			// var word = "";
 
 			//catches user input, trims white space on ends, and makes it all lower case
-			word = ($('#input').val().trim()).toLowerCase();
+			var word = ($('#input').val().trim()).toLowerCase();
 
 			//all this does is clear the text form after the search button is activated.
 			//it sets the value of the html element with id #input to an empty string
 			$('#input').val('');
 
+			$('#add-to-favorites').on("click", function(){
+				event.preventDefault();
+
+				//if the word variable is not an empty string, the push it into the favorite words
+				//array. after you do that, clear that value of the word variable
+				if(word !== ''){
+					
+					//if the word isn't an empty string, send it to the database 
+					console.log("sending to database...");
+					database.ref().push({
+					favoriteWordEntry: word
+					});
+					console.log("sent");
+					console.log("=========");
+
+					word = '';
+					// database.ref().on("value", function(snapshot){
+
+					// 	var sv = snapshot.val();
+
+					// 	console.log(sv);
+					// 	console.log(Object.keys(sv));
+
+					// });
+
+				}
+
+
+				
+			});
+
 
 			//URL to be passed to the API for request. Notice how word is dinamically inserted into 
 			//URL
 			var queryURL = 'https://fathomless-plains-61908.herokuapp.com/dictionary/entries/en/' + "" + word + "" ;
+
+			
 
 			//This is where our AJAX call begins
 			$.ajax({
@@ -160,6 +236,8 @@
 					$('#word-definition').html($title);
 
 					$('#speak').on("click", function(){
+
+
 						responsiveVoice.speak(word, "US English Female");
 
 					});
@@ -210,7 +288,12 @@
 
 					var wordType = (response.results[0].lexicalEntries[0].lexicalCategory).toLowerCase();
 
-					var exampleSentence = response.results[0].lexicalEntries[0].entries[0].senses[0].examples[0].text;
+                    var examples = response.results[0].lexicalEntries[0].entries[0].senses[0].examples;
+
+					var exampleSentence = '';
+					if ( examples ) {
+ 					  exampleSentence = ": " + "<i>"+ examples[0].text + "</i>" + ".";
+					}
 
 					//this looks horrible to the eye.
 					var $wordInfo = '<h2>' + word + ' ' + '<span class="glyphicon glyphicon-volume-up glyphstyle" aria-hidden="true" id="speak"></span>' + "</h2>" +
@@ -219,6 +302,32 @@
 
 					//when we placed the click event here, it didn't work. WHYYYYY
 
+
+					$('#word-info').empty();
+					$('#word-info').html($wordInfo);
+					$('#word-definition').html(definition);
+					$('#word-definition').append(exampleSentence);
+
+					$('#speak').on("click", function(){
+
+						console.log("inside click event");
+						responsiveVoice.speak(word,  "US English Female");
+
+					});
+				};
+
+			});
+
+
+		});
+
+
+
+	</script>
+	</script>
+
+<!-- first, we look into the lexicalEntries array to check whether or not there is more than one entry for the word that was searched... so for instance, the word "front" has three lexicalEntries. One is for "front" as a Noun, the other as an Adjective, and lastly as a Verb... So, here is where the branching of our conditionals needs to start happenning. does the returned word have more than one lexical entry? if there is only one, we go in this direction... if it has more than one, we go in this other direction.
+>>>>>>> 8a061fada4fc920b2e8b8ae2c29b241c0f1fecff
 
 					$('#word-info').empty();
 					$('#word-info').html($wordInfo);
