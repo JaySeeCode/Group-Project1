@@ -11,35 +11,64 @@ firebase.initializeApp(config);
 
 var database = firebase.database();
 
-database.ref().on("child_added", function(childSnapshot){
+database.ref().on("value", function(childSnapshot){
 
 	var sv = childSnapshot.val();
-	var key = sv.favoriteWordEntry;
+
+	var svArr = Object.keys(sv).map(function(arr){
+			var temp = sv[arr];
+			temp.key = arr;
+			return temp;
+	});
+
+	svArr.sort(function(a, b){
+		return a.timeStamp - b.timeStamp;
+	});
+
+	// var key = sv.favoriteWordEntry;
 
 	console.log(sv);
-	console.log(sv.favoriteWordEntry);
+	// console.log(sv.favoriteWordEntry);
+	console.log("svArr: ", svArr);
 
-	var $button = $('<button />');
-	$button.addClass("removeButton");
-	$button.attr("key", key);
-	$button.text(" X ");
+	console.log(Object.keys(childSnapshot.val()));
 
-	var $entry = '<li>' + key + '</li>';
 
-	$('#list').prepend($entry, $button);
+	$('#list').empty();
+	for (var i = 0; i < svArr.length; i++) {
+
+		renderButton(svArr[i]);
+		
+	};
+
+
+	// var $button = $('<button />');
+	// $button.addClass("removeButton");
+	// $button.attr("key", key);
+	// $button.text(" X ");
+
+	// var $entry = '<li>' + key + '</li>';
+
+	// $('#list').prepend($entry, $button);
 
 	$('.removeButton').on("click", function(){
 
-		// console.log($(this).attr("key"));
-
-		// var wordToRemove = $(this).attr("key");
-
-		// var entryRef = database.ref('favoriteWordEntry');
 		console.log("here");
 		database.ref().child($(this).attr("key")).remove();
+		$(this).remove();
 
 	});
 
+	function renderButton(arr){
+		var $button = $('<button />');
+		$button.addClass("removeButton");
+		$button.attr("key", arr.key);
+		$button.attr("value", arr.favoriteWordEntry);
+		$button.text('X');
 
+		$entry = '<li>' + arr.favoriteWordEntry + '</li>';
+
+		$('#list').prepend($entry, $button);
+	};
 
 });

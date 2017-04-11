@@ -44,7 +44,8 @@ $('#search').on("click", function() {
             console.log("sending to database...");
 
             database.ref().push({
-                favoriteWordEntry: word
+                favoriteWordEntry: word,
+                timeStamp: + new Date()
             });
 
             console.log("sent");
