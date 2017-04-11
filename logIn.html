@@ -3,123 +3,178 @@
 <head>
 	<title>Log In</title>
 
-<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
-<!-- To ensure proper rendering and touch zooming -->
-<meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- To ensure proper rendering and touch zooming -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-<script src="https://www.gstatic.com/firebasejs/3.7.5/firebase.js"></script>
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/3.7.5/firebase.js"></script>
 
-</head>
-
-<!-- create a logo for every page that links to the main page -->
-
-	<!-- user enters in username and password to log into the program -->
-	<div class="container">
-		<div class="row">
-			<div class="col-md-offset-1 bgstyle">
-				<h3>The ultimate guide to word discovery.</h3>
-				<div class="col-md-6">
-				    <form role="form">
-			            <div class="form-group">
-			                <input type="email"  id="txtEmail" placeholder=" enter email">
-			       
-			                <input type="password"  id="txtPassword" placeholder=" enter password">
-			            </div>
-			        </form>
-			    </div>
-			<div class="row">
-				<div class="col-md-offset-1 bgstyle">
-						<!-- when selected the system will check to make sure the username and password match what is in the system. -->
-						<button class="btn btn-primary" id="btnLogin" type="submit" class="link-style">Login</button>
-						<!-- if the user does not have an account with the word up app then they can create a profile -->
-						<button class="btn btn-primary" id="btnSignUp" type="submit">Sign Up</button>
-						<!-- logout button remains hidden -->
-						<button class="btn btn-primary hide" id="btnLogout" type="submit">Log Out</button>
-					</div>
-				</div>
-		</div>
-	</div>
+  <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
 
 </head>
 
 <body>
 
-<script src="https://code.jquery.com/jquery.js"></script>
-<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
 
-<!-- add javascript to individual page -->
+  <!-- create a logo for every page that links to the main page -->
 
-<script type="text/javascript">
+  <!-- user enters in username and password to log into the program -->
+  <div class="container">
+    <div class="row">
+      <div class="col-md-offset-1 bgstyle">
+        <h3>The ultimate guide to word discovery.</h3>
+        <div class="col-md-6">
+          <form role="form">
+            <div class="form-group">
+              <input type="email"  id="txtEmail" placeholder="enter email">
 
-   // Initialize Firebase
-  var config = {
-    apiKey: "AIzaSyBHzsuJjRTjI63IifVncdfhyav-GYuzVR0",
-    authDomain: "team-gosling.firebaseapp.com",
-    databaseURL: "https://team-gosling.firebaseio.com",
-    projectId: "team-gosling",
-    storageBucket: "team-gosling.appspot.com",
-    messagingSenderId: "440069700680"
-  };
-  firebase.initializeApp(config);
+              <input type="password"  id="txtPassword" placeholder="enter password">
+            </div>
+          </form>
+        </div>
+        <div class="row">
+          <div class="col-md-offset-1 bgstyle">
+            <!-- when selected the system will check to make sure the username and password match what is in the system. -->
+            <button class="btn btn-primary" id="btnLogin" type="submit" class="link-style">Login</button>
+            <!-- if the user does not have an account with the word up app then they can create a profile -->
+            <button class="btn btn-primary" id="btnSignUp" type="submit">Sign Up</button>
+            <!-- logout button remains hidden -->
+            <button class="btn btn-primary hide" id="btnLogout" type="submit">Log Out</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
-  //Get Elements
-  const txtEmail = document.getElementById('txtEmail');
-  const txtPassword = document.getElementById('txtPassword');
-  const btnLogin = document.getElementById('btnLogin');
-  const btnSignUp = document.getElementById('btnSignUp');
-  const btnLogout = document.getElementById('btnLogout');
+    <!-- add javascript to individual page -->
 
-  //Add Login Event
+    <script type="text/javascript">
 
-  btnLogin.addEventListener('click', e =>{
-  	//Get email and password
-  	const email = txtEmail.value;
-  	const pass = txtPassword.value;
-  	const auth = firebase.auth();
-
-  	//Sign in
-  	const promise = auth.signInWithEmailAndPassword(email, pass);
-  	promise.catch(e => console.log(e.message));
-  })
-
-  //Add Signup Event
-  btnSignUp.addEventListener('click', e =>{
-  	//Get email and pass
-  	//TODO: check for real emails!
-  	const email = txtEmail.value;
-  	const pass = txtPassword.value;
-  	const auth = firebase.auth();
-  	//Sign In
-  	const promise = auth.createUserWithEmailAndPassword(email, pass);
-  	promise
-  		.catch(e => console.log(e.message));
-
-  })
+       // Initialize Firebase
+       var config = {
+        apiKey: "AIzaSyBHzsuJjRTjI63IifVncdfhyav-GYuzVR0",
+        authDomain: "team-gosling.firebaseapp.com",
+        databaseURL: "https://team-gosling.firebaseio.com",
+        projectId: "team-gosling",
+        storageBucket: "team-gosling.appspot.com",
+        messagingSenderId: "440069700680"
+      };
+      firebase.initializeApp(config);
 
 
-  // Add a realtime listener
-  firebase.auth().onAuthStateChanged(firebaseUser => {
-  	if(firebaseUser){
-  		console.log(firebaseUser)
-  		btnLogout.classList.remove('hide');
-  	} else {
-  		console.log('not logged in');
-  	}
-  }); 
+      // "https://api.kickbox.io/v2/verify?email=email@test.com&apikey=20d6e82da0541eeb48c5a1f694af8d7ef6e9861e25a3d37f0cfd858aad2218e0"
 
-  btnLogout.addEventListener('click', e=>{
-    firebase.auth().signOut();
-    console.log("logged out");
-  });
+        // verifyEmail("memmons18@gmail.com");
+
+      
+
+      //Get Elements
+      const txtEmail = document.getElementById('txtEmail');
+      const txtPassword = document.getElementById('txtPassword');
+      const btnLogin = document.getElementById('btnLogin');
+      const btnSignUp = document.getElementById('btnSignUp');
+      const btnLogout = document.getElementById('btnLogout');
+
+      //Add Login Event
+
+      btnLogin.addEventListener('click', e =>{
 
 
-</script>
+      	//Get email and password
+      	const email = txtEmail.value;
+      	const pass = txtPassword.value;
+      	const auth = firebase.auth();
+
+      	//Sign in
+      	const promise = auth.signInWithEmailAndPassword(email, pass);
+      	promise.catch(e => console.log(e.message));
+      })
+
+      //Add Signup Event
+      btnSignUp.addEventListener('click', e =>{
+
+        var response = verifyEmail(txtEmail.value);
+
+        if(response){
+            //Get email and pass
+          //TODO: check for real emails!
+          const email = txtEmail.value;
+          const pass = txtPassword.value;
+          const auth = firebase.auth();
+          //Sign In
+          const promise = auth.createUserWithEmailAndPassword(email, pass);
+          promise
+          .catch(e => console.log(e.message));
+          
+        }else if(response === ""){
+          alert("You didn't enter an email. Please enter a valid email");
+          document.getElementById("txtEmail").value = '';
+          document.getElementById("txtPassword").value = '';
+        }
+        else{
+           alert("Invalid email address. Please enter a valid email");
+          document.getElementById("txtEmail").value = '';
+          document.getElementById("txtPassword").value = '';
+        }
+      	
+
+      })
+
+
+      // Add a realtime listener
+      firebase.auth().onAuthStateChanged(firebaseUser => {
+      	if(firebaseUser){
+      		console.log(firebaseUser)
+      		btnLogout.classList.remove('hide');
+      	} else {
+      		console.log('not logged in');
+      	}
+      }); 
+
+      btnLogout.addEventListener('click', e=>{
+        firebase.auth().signOut();
+        console.log("logged out");
+      });
+
+
+      //functions
+
+      function verifyEmail(email){
+
+        var queryURL = "https://api.kickbox.io/v2/verify?email=" + email +"&apikey=20d6e82da0541eeb48c5a1f694af8d7ef6e9861e25a3d37f0cfd858aad2218e0";
+
+        $.ajax({
+          url: queryURL,
+          method: "GET"
+        }).done(function(response){
+          console.log(response);
+
+          // var isEmailValid = false;
+          var ref = response.result;
+
+
+          if(ref === "deliverable"){
+            // isEmailValid = true;
+            console.log("is valid");
+            return true;
+          }
+          else{
+            console.log("is not valid");
+            return false;
+          }
+
+
+        });
+
+      }
+
+
+  </script>
 
 
 </body>
