@@ -4,28 +4,28 @@
 	<title>Challenge Page</title>
 
 
-<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+	<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-<link rel="stylesheet" href="assets/css/font-awesome.css">
-
-
-<link rel="stylesheet" type="text/css" href="assets/css/style.css">
-
-<!-- To ensure proper rendering and touch zooming -->
-<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/font-awesome.css">
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<!-- To ensure proper rendering and touch zooming -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	
-<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 
-<script src="http://code.responsivevoice.org/responsivevoice.js"></script>
+	<script src="http://code.responsivevoice.org/responsivevoice.js"></script>
 
 
 
@@ -66,14 +66,19 @@
 					<h1><i class="fa fa-trophy .glyphstyle2" aria-hidden="true"></i>&nbsp; Word Challenge</h1>
 					<h5>try to use this word at least once today</h5>
 
-					<!-- random word will be taken from the api and displayed here -->
+					
 					<div id="challengeWord"></div>
 
+					<form>
+						<label>Try using the word in a sentence...</label>
+						<input placeholder="Type your sentence here" type="text">
+						<button id="submit-challenge">Submit</button>
+					</form>
 
 
 
 					<!-- when this button is selected it will post to social media that they were able to successfully use the challenge word today . will need to look into using log in with slack to make it easier for user to post-->
-					<button class="button-style-2" id="postToSocialMedia">post</button>
+					<!-- <button class="button-style-2" id="postToSocialMedia">post</button> -->
 
 				<div class="col-md-3"></div>
 				
@@ -86,10 +91,7 @@
 <script type="text/javascript" src="assets/javascript/game.js"></script>
 
 <!-- add javascript to individual page -->
-<script type="text/javascript">
-
-
-</script>
+<script type="text/javascript" src="assets/javascript/challenge-logic.js"></script>
 
 
 </body>

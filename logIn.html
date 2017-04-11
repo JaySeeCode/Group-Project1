@@ -98,30 +98,27 @@
       //Add Signup Event
       btnSignUp.addEventListener('click', e =>{
 
-        var response = verifyEmail(txtEmail.value);
+        var address = txtEmail.value;
+        console.log(address);
 
-        if(response){
-            //Get email and pass
-          //TODO: check for real emails!
-          const email = txtEmail.value;
-          const pass = txtPassword.value;
-          const auth = firebase.auth();
-          //Sign In
-          const promise = auth.createUserWithEmailAndPassword(email, pass);
-          promise
-          .catch(e => console.log(e.message));
-          
-        }else if(response === ""){
-          alert("You didn't enter an email. Please enter a valid email");
-          document.getElementById("txtEmail").value = '';
-          document.getElementById("txtPassword").value = '';
-        }
-        else{
-           alert("Invalid email address. Please enter a valid email");
-          document.getElementById("txtEmail").value = '';
-          document.getElementById("txtPassword").value = '';
-        }
-      	
+        var response = verifyEmail(address);
+
+        // if(response == true){
+        //     //Get email and pass
+        //   //TODO: check for real emails!
+        //   const email = txtEmail.value;
+        //   const pass = txtPassword.value;
+        //   const auth = firebase.auth();
+        //   //Sign In
+        //   const promise = auth.createUserWithEmailAndPassword(email, pass);
+        //   promise
+        //   .catch(e => console.log(e.message));
+
+        // }else{
+        //    alert("Invalid email address. Please enter a valid email");
+        //   document.getElementById("txtEmail").value = '';
+        //   document.getElementById("txtPassword").value = '';
+        // }
 
       })
 
@@ -154,18 +151,27 @@
         }).done(function(response){
           console.log(response);
 
-          // var isEmailValid = false;
+          var isEmailValid;
           var ref = response.result;
 
 
           if(ref === "deliverable"){
-            // isEmailValid = true;
+            isEmailValid = true;
             console.log("is valid");
-            return true;
+
+            const email = txtEmail.value;
+            const pass = txtPassword.value;
+            const auth = firebase.auth();
+            //Sign In
+            const promise = auth.createUserWithEmailAndPassword(email, pass);
+            promise
+            .catch(e => console.log(e.message));
           }
           else{
             console.log("is not valid");
-            return false;
+            alert("Invalid email address. Please enter a valid email");
+            document.getElementById("txtEmail").value = '';
+            document.getElementById("txtPassword").value = '';
           }
 
 
