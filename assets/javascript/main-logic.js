@@ -1,5 +1,3 @@
-//these are the words for the daily challenge.
-var wordsList = [];
 
 // =============================================
 
@@ -26,6 +24,10 @@ $('#search').on("click", function() {
     //Prevents button from submitting form
     event.preventDefault();
 
+
+    $('#add-to-favorites').css("color", "");
+
+
     //catches user input, trims white space on ends, and makes it all lower case
     var word = ($('#input').val().trim()).toLowerCase();
 
@@ -43,12 +45,15 @@ $('#search').on("click", function() {
             //if the word isn't an empty string, send it to the database 
             console.log("sending to database...");
 
+            //this sends the word to the database
             database.ref().push({
                 favoriteWordEntry: word,
                 timeStamp: + new Date()
             });
 
             alertify.success("Word added to favorites.");
+
+            $('#add-to-favorites').css("color", "#ffd72f");
 
             console.log("sent");
             console.log("=========");
@@ -69,7 +74,10 @@ $('#search').on("click", function() {
     //This is where our AJAX call begins
     $.ajax({
         url: queryURL,
-        method: "GET"
+        method: "GET",
+        error: function(){
+             alertify.error("Sorry! Not a valid word.");
+        }
 
     }).done(function(response) {
 
