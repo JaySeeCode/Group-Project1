@@ -8,7 +8,6 @@
 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
 	<link rel="stylesheet" href="assets/css/font-awesome.css">
 
@@ -18,17 +17,20 @@
 	<!-- To ensure proper rendering and touch zooming -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 
 	<script src="http://code.responsivevoice.org/responsivevoice.js"></script>
 
+	<!-- alertify.js -->
+	
+	<script src="https://cdn.rawgit.com/alertifyjs/alertify.js/v1.0.10/dist/js/alertify.js"></script>
 
 
+	<script src="https://cdn.rawgit.com/alertifyjs/alertify.js/v1.0.10/dist/js/ngAlertify.js"></script>
 
 </head>
 
@@ -61,17 +63,17 @@
 
 	<div class="container">
 		<div class="row">
-			<div class="col-md-3"></div>
-				<div class="col-md-6">
+			<div class="col-md-5"></div>
+				<div class="col-md-4">
 					<h1><i class="fa fa-trophy .glyphstyle2" aria-hidden="true"></i>&nbsp; Word Challenge</h1>
-					<h5>try to use this word at least once today</h5>
+					<h5 class="text-center" style="text-decoration: underline">Try using this word at least once today!</h5>
 
 					
 					<div id="challengeWord"></div>
 
 					<form>
 						<label>Try using the word in a sentence...</label>
-						<input placeholder="Type your sentence here" type="text">
+						<input placeholder="Type your sentence here" type="text" id="sentence">
 						<button id="submit-challenge">Submit</button>
 					</form>
 
@@ -88,10 +90,11 @@
 
 <script src="https://code.jquery.com/jquery.js"></script>
 <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
-<script type="text/javascript" src="assets/javascript/game.js"></script>
+<!-- <script type="text/javascript" src="assets/javascript/game.js"></script> -->
 
 <!-- add javascript to individual page -->
 <script type="text/javascript" src="assets/javascript/challenge-logic.js"></script>
+
 
 
 </body>
