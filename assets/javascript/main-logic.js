@@ -48,6 +48,8 @@ $('#search').on("click", function() {
                 timeStamp: + new Date()
             });
 
+            alertify.success("Word added to favorites.");
+
             console.log("sent");
             console.log("=========");
 

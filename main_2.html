@@ -20,16 +20,10 @@
 
     <script src="http://code.responsivevoice.org/responsivevoice.js"></script>
 
+    <script src="https://use.fontawesome.com/559c51d706.js"></script>
+
     <!-- LINK TO FIREBASE GOES HERE -->
     <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
-
-
-    <style>
-        .glyphstyle {
-            font-size: 20px;
-        }
-    </style>
-
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
@@ -54,8 +48,8 @@
             </div>
             <div class="collapse navbar-collapse navbar-right" id="myNavbar">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="main_2.html"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>&nbsp;Search</a></li>
-                    <li><a href="favorite.html"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>&nbsp;  Favorites</a></li>
+                    <li class="active"><a href="main_2.html"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>&nbsp; Search</a></li>
+                    <li><a href="favorite.html"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>&nbsp; Favorites</a></li>
                     <li><a href="challenge.html"><i class="fa fa-trophy" aria-hidden="true"></i>&nbsp; Challenge</a> </li>
                 </ul>
             </div>
@@ -76,7 +70,7 @@
                     <button class="button-style" id="search"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
 
                     <!-- when selected it will take user to a new page that displays list of favorite words -->
-                    <button class="btn btn-default button-style" id="add-to-favorites"><span class="glyphicon glyphicon-star" aria-hidden="true"></button>
+                    <button class="button-style-fav" id="add-to-favorites"><span class="glyphicon glyphicon-star" aria-hidden="true"></button>
                 </form>
             </div>
 
@@ -94,6 +88,9 @@
                     <!-- here the word and its type will be properly formatted
 					and displayed -->
                     <div id="word-info">
+                    </br>
+                    </br>
+                    <h2 class="dict-type"><i>Type a word to look up the definition in the Oxford Dictionary</i></h2>
                     </div>
 
                     <div id="word-definition">
@@ -109,6 +106,8 @@
     </div>
 
     <script type="text/javascript" src="assets/javascript/main-logic.js"></script>
+
+    <script src="https://cdn.rawgit.com/alertifyjs/alertify.js/v1.0.10/dist/js/alertify.js"></script>
 
     <!-- first, we look into the lexicalEntries array to check whether or not there is more than one entry for the word that was searched... so for instance, the word "front" has three lexicalEntries. One is for "front" as a Noun, the other as an Adjective, and lastly as a Verb... So, here is where the branching of our conditionals needs to start happenning. does the returned word have more than one lexical entry? if there is only one, we go in this direction... if it has more than one, we go in this other direction. -->
 

@@ -58,11 +58,21 @@ input:focus, input:active {
 	padding: 6px 15px 6px 15px;
 }
 
+.button-style-fav {
+	border-style: none;
+	background-color: white;
+	font-size: 14px;
+}
+
+.button-style-fav:focus, .button-style-fav:active, .button-style-fav:hover {
+	color: #ffd72f;
+	border-style: none;
+	outline: none;
+}
 
 .nav-style {
 	border-radius: 0px;
 }
-
 
 .glyphstyle{
 	font-size: 20px;
@@ -77,11 +87,51 @@ input:focus, input:active {
 
 }
 
+.dict-type {
+	font-family: 'Lora', serif;
+	color: #D3D3D3;
+	line-height: 200%;
+	font-style: italic;
+}
+
+.dict-type-2 {
+	font-family: 'Lora', serif;
+	font-style: italic;
+}
+
+/* Style the buttons that are used to open and close the accordion panel */
+button.accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+button.accordion.active, button.accordion:hover {
+    background-color: #ddd;
+}
+
+/* Style the accordion panel. Note: hidden by default */
+div.panel {
+    padding: 0 18px;
+    background-color: white;
+    display: none;
+}
+
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
 	h1 {
 		font-size: 25px;
 	}
 }
+
+
+
 
 
 
