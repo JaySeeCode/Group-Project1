@@ -122,7 +122,7 @@ function resetDailyChallenge(){
 function checkForTimeOut(){
 
 	var currentTime = Date.now();
-	var currentItem = 
+	// var currentItem = 
 
 }
 
