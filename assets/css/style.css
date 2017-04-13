@@ -124,10 +124,27 @@ div.panel {
     display: none;
 }
 
-@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+.color {
+	color: red;
+}
+
+#images {
+	width: 20%;
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 568px) {
 	h1 {
 		font-size: 25px;
 	}
+
+	.dict-type {
+	font-family: 'Lora', serif;
+	color: #D3D3D3;
+	line-height: 175%;
+	font-size: 25px;
+	font-style: italic;
+	}
+
 }
 
 
