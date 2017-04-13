@@ -103,6 +103,37 @@ $('#submit-challenge').on("click", function(){
 		console.log("word was used in sentence. challenge complete");
 		isChallengeComplete = true;
 		alertify.alert("Daily Challenge Complete");
+		$("#submit-challenge").hide();
+		$("#status").html("<b>complete</b>");
+		$(".color").css("color", "green");
+
+		var query = "http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=champion";
+
+     	// Perfoming an AJAX GET request to our queryURL
+     	$.ajax({
+       	url: query,
+      	method: "GET"
+     	})
+
+      	// After the data from the AJAX request comes back
+      	.done(function(response) {
+
+        // Saving the image_original_url property
+        var imageUrl = response.data.image_original_url;
+
+        // Creating and storing an image tag
+        var championImage = $("<img>");
+
+        // Setting the catImage src attribute to imageUrl
+        championImage.attr("src", imageUrl);
+        championImage.attr("alt", "cat image");
+        championImage.attr("width", "300")
+
+        // Prepending the catImage to the images div
+        $("#images").html(championImage);
+
+
+      	});
 	}else{
 		console.log("word was not used in sentence. please try again");
 		alertify.alert("Word was not used in sentence. Please try again");
@@ -117,6 +148,9 @@ function resetDailyChallenge(){
 	$('#challenge-word').html(randWord);
 	isChallengeComplete = false;
 	console.log(randWord);
+	$("#status").html("<b>incomplete</b>");
+	$("#status").css("color", "");
+	$("#submit-challenge").show();
 };
 
 function checkForTimeOut(){
