@@ -38,22 +38,39 @@ wordsList = [
 ];
 
 var definition = '';
-var randWord = wordsList[Math.floor(Math.random() *  wordsList.length)];
+var randWord = ''; 
+// wordsList[Math.floor(Math.random() *  wordsList.length)];
+resetDailyChallenge();	
 var isChallengeComplete = false;
+var timeCreated = Date.now(); 
 
-console.log(randWord);
+var newObj = {
+	randWord: randWord,
+	timeCreated: timeCreated
+};
+
+console.log("from local array: " + randWord);
 
 var queryURL = 'https://fathomless-plains-61908.herokuapp.com/dictionary/entries/en/' + "" + randWord + "";
 
+//sends stringified object to localStorage
+localStorage.setItem("word", JSON.stringify(newObj));
 
-$('#challengeWord').html("Today's challenge word is: " +  '<span id="challenge-word" data-toggle="tooltip">' + randWord + '</span>');
+//retrieves stringified object from local storage and makes it an object
+//so that we may access its properties.
+var tempWord = localStorage.getItem('word');
+tempWord = JSON.parse(tempWord);
+console.log("from local storage: " + tempWord.randWord + " | time stamp: " + tempWord.timeCreated);
+
+$('#challengeWord').html("Today's challenge word is: " +  '<span id="challenge-word" data-toggle="tooltip">' + tempWord.randWord + '</span>');
+
 
 
 //as of now, it resets every 24 hours since NOW. gotta figure out how to make it
 //reset every 24 hours since a fixed time. like, 12 AM for instance. 
-setInterval(resetDailyChallenge, 86400000); 
+setInterval(resetDailyChallenge, 86400000);
 // ---> IF YOU SET THIS TO THE NUMBER OF MILISECONDS IN A DAY, A NEW WORD
-// //WILL BE SHOWN EVER 24 HOURS
+// //WILL BE SHOWN EVER 24 HOURS 
 // 86400000 num of milliseconds in a day
 
 $.ajax({
@@ -102,8 +119,11 @@ function resetDailyChallenge(){
 	console.log(randWord);
 };
 
-// function fetchDefinition(){
+function checkForTimeOut(){
 
-// }
+	var currentTime = Date.now();
+	var currentItem = 
+
+}
 
 
