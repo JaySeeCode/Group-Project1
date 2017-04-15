@@ -39,7 +39,7 @@ wordsList = [
 
 var randWord = '';
 var isChallengeComplete = false;
-
+var definition = '';
 //picks new word from array and sets it to local storage
 if(!localStorage.getItem("word")){
 	selectAndSetNewWord();
@@ -73,7 +73,7 @@ $('#challengeWord').html("Today's challenge word is: " +  '<span id="challenge-w
 // //WILL BE SHOWN EVER 24 HOURS 
 // 86400000 num of milliseconds in a day
 
-var queryURL = 'https://fathomless-plains-61908.herokuapp.com/dictionary/entries/en/' + "" + randWord + "";
+var queryURL = 'https://fathomless-plains-61908.herokuapp.com/dictionary/entries/en/' + "" + tempWord.randWord + "";
 
 $.ajax({
         url: queryURL,
@@ -89,6 +89,7 @@ $.ajax({
       });
 
     $("#define").on("click", function(){
+    	console.log("def: " + definition);
     	$("#defined").html("<p></p>" + "*" + definition + "<p></p>");
     })
     $("#infoIcon").on("click",function(){
