@@ -16,7 +16,10 @@ To make sure the user understands how the word of the day should be used, we add
 
 
 ## Technologies used
+<<<<<<< HEAD
 You can give a brief listing of the technologies you've learned and applied here
+=======
+>>>>>>> 30b77d4d527f5b03cc3409a7416025ad9d5dc4cc
 - jQuery
 - Bootstrap
 - Alertify.js
