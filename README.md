@@ -3,7 +3,8 @@
 We created a project that helps people expand their vocabulary through access to a mobile dictionary. We help the user become more literate by allowing them to create their own sentences using a daily challenge word. Users that have favorite words or ones more difficult to remember can save them for quicker access when needed.
 
 ## Screenshots
-![Alt text](http://i1044.photobucket.com/albums/b447/janetwalker271989/definition_zpsnwrtdhut.jpg), ![Alt text](http://i1044.photobucket.com/albums/b447/janetwalker271989/favorite_zpsa1cmfyvj.jpg), ![Alt text](http://i1044.photobucket.com/albums/b447/janetwalker271989/challenge_zpsi96o2mvg.jpg)
+![Alt text](http://i1044.photobucket.com/albums/b447/janetwalker271989/definition_zpsjjstmbis.jpg)   ![Alt text](http://i1044.photobucket.com/albums/b447/janetwalker271989/favorite_zpspu8lkpxz.jpg)   ![Alt text](http://i1044.photobucket.com/albums/b447/janetwalker271989/challenge_zpsm7lixdiz.jpg)
+
 Our motivation in creating this project was trying to create a program that is user friendly and informative. Our group thought it would be a great idea to try and help people expand their vocabulary and get away from using the same old boring words used over and over. Our solution was creating the program called “Word Up”.  “Word up” is a mobile dictionary that allows users to look up definitions of words they are unfamiliar with.
 
 Accessing the program through smartphone or computer gives users access to definitions , hear how words are pronounced through our “text to speak” option, save favorite words or ones you want to try to use more, and be challenged by trying to use our word of the day. 
@@ -42,16 +43,26 @@ What to install and how for local development and testing purposes
 * Sublime Text
 
 ## Walk throughs of code
-For Project presentation, you can include snippets of code you found buggy, interesting, or are overall proud of here.  Try to limit the quantity and size to quick readable bits.
+Snippets of code we found buggy, interesting, or are overall proud of.  
 
-You can also show where you've used technologies you've learned and applied here.
+Having the button populate and show up next to the favorite word instead of underneath it.
 
 ```
-function awesomeThing() {
-    //...
-    // try not to make it too long otherwise, point to filepaths:line numbers
-    //...
-}
+function renderButton(arr){
+        var $button = $('<button />');
+        $button.addClass("removeButton");
+        $button.attr("key", arr.key);
+        $button.attr("value", arr.favoriteWordEntry);
+        $button.text('X');
+
+        $entry = $('<li style="font-size:10px; padding-left:10px; ">' + '<span>'+ arr.favoriteWordEntry+ '</span>'  + '</li>');
+
+        $entry.append($button)
+
+        $('#list').prepend($entry);
+    };
+
+});
 ```
 
 ## Authors
