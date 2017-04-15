@@ -3,12 +3,13 @@
 We created a project that helps people expand their vocabulary through access to a mobile dictionary. We help the user become more literate by allowing them to create their own sentences using a daily challenge word. Users that have favorite words or ones more difficult to remember can save them for quicker access when needed.
 
 ## Screenshots
+![Alt text](http://i1044.photobucket.com/albums/b447/janetwalker271989/definition_zpsnwrtdhut.jpg), ![Alt text](http://i1044.photobucket.com/albums/b447/janetwalker271989/favorite_zpsa1cmfyvj.jpg), ![Alt text](http://i1044.photobucket.com/albums/b447/janetwalker271989/challenge_zpsi96o2mvg.jpg)
 Our motivation in creating this project was trying to create a program that is user friendly and informative. Our group thought it would be a great idea to try and help people expand their vocabulary and get away from using the same old boring words used over and over. Our solution was creating the program called “Word Up”.  “Word up” is a mobile dictionary that allows users to look up definitions of words they are unfamiliar with.
-![Alt text](http://i1044.photobucket.com/albums/b447/janetwalker271989/definition_zpsnwrtdhut.jpg)
+
 Accessing the program through smartphone or computer gives users access to definitions , hear how words are pronounced through our “text to speak” option, save favorite words or ones you want to try to use more, and be challenged by trying to use our word of the day. 
-![Alt text](http://i1044.photobucket.com/albums/b447/janetwalker271989/favorite_zpsa1cmfyvj.jpg)
+
 To make sure the user understands how the word of the day should be used, we added an area for them to create a sentence using the word for practice.
-![Alt text](http://i1044.photobucket.com/albums/b447/janetwalker271989/challenge_zpsi96o2mvg.jpg)
+
 
 
 
