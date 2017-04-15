@@ -64,6 +64,59 @@ function renderButton(arr){
 
 });
 ```
+All three functions below work together to make sure that the daily challenge updates on a 24 hour basis.
+```
+function resetDailyChallenge(){
+	console.log("beginning of function");
+	// randWord = wordsList[Math.floor(Math.random() *  wordsList.length)];
+	selectAndSetNewWord();
+
+
+	$('#challenge-word').html('<a>' + randWord + '</a>');
+	isChallengeComplete = false;
+	console.log(randWord);
+	$("#status").html("<b>incomplete</b>");
+	$("#status").css("color", "");
+	$("#submit-challenge").show();
+};
+```
+```
+function checkForTimeOut(){
+
+	var word = localStorage.getItem('word');
+	word = JSON.parse(word);
+
+	var currentTime = Date.now();
+	var currentItem = word;
+
+
+	var elapseTime = currentTime - word.timeCreated;
+
+	if(elapseTime > 86400000){
+		resetDailyChallenge();
+		return true;
+	}else{
+		console.log('no timeout');
+	}
+	
+
+};
+```
+```
+function selectAndSetNewWord(){
+	randWord = wordsList[Math.floor(Math.random() *  wordsList.length)];
+	var timeCreated = Date.now();
+
+	var newObj = {
+		randWord: randWord,
+		timeCreated: timeCreated
+	};
+
+	//sends stringified object to localStorage
+	localStorage.setItem("word", JSON.stringify(newObj));
+
+};
+```
 
 ## Authors
 
