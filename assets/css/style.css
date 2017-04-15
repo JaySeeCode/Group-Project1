@@ -2,6 +2,15 @@ body {
 	padding-top: 70px; 
 }
 
+button {
+	background-color: white;
+	border-style: none;
+}
+
+a {
+	text-decoration: none;
+}
+
 .container {
 	margin-left: 20px;
 	margin-right: 20px;
@@ -23,6 +32,10 @@ body {
     text-align:left;
     /* inline-block space fix */
     margin-right:-4px;
+}
+
+#challenge-word{
+	font-size:24px;
 }
 
 input {
@@ -70,6 +83,55 @@ input:focus, input:active {
 	outline: none;
 }
 
+#submit-challenge {
+	background-color: #dcdcdc;
+	border-radius: 2px;
+	margin-top: 5px;
+	margin-right: 20%;
+	border-style: none;
+	outline: none;
+}
+
+#submit-challenge:focus, #submit-challenge:active, #submit-challenge:hover {
+	background-color: #666666;
+	color: #ffffff;
+	border-radius: 2px;
+	margin-top: 5px;
+	margin-right: 20%;
+	border-style: none;
+	outline: none;
+}
+
+#define {
+	background-color: #dcdcdc;
+	border-radius: 2px;
+	margin-top: 5px;
+	margin-right: 20%;
+	border-style: none;
+	outline: none;
+}
+
+#define:focus, #define:active, #define:hover {
+	background-color: #666666;
+	color: #ffffff;
+	border-radius: 2px;
+	margin-top: 5px;
+	margin-right: 20%;
+	border-style: none;
+	outline: none;
+}
+
+.removeButton {
+   width: 59px;
+   height: 28px;
+   background-color: #DCDCDC ;
+   border-radius: 2px;
+   display: inline-block;
+   float: right;
+   margin-top: 5px;
+   margin-right: 20%;
+}
+
 .nav-style {
 	border-radius: 0px;
 }
@@ -99,56 +161,75 @@ input:focus, input:active {
 	font-style: italic;
 }
 
-/* Style the buttons that are used to open and close the accordion panel */
-button.accordion {
-    background-color: #eee;
-    color: #444;
-    cursor: pointer;
-    padding: 18px;
-    width: 100%;
-    text-align: left;
-    border: none;
-    outline: none;
-    transition: 0.4s;
-}
-
-/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
-button.accordion.active, button.accordion:hover {
-    background-color: #ddd;
-}
-
-/* Style the accordion panel. Note: hidden by default */
-div.panel {
-    padding: 0 18px;
-    background-color: white;
-    display: none;
-}
-
 .color {
 	color: red;
 }
 
-#images {
-	width: 20%;
+.center-block {  
+    width:400px;  
+    padding:10px;  
+} 
+
+.navbar-text {
+	text-align: center;
 }
 
-@media only screen and (min-device-width : 320px) and (max-device-width : 568px) {
+ul li span{
+	font-size: 25px;
+}
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 375px) {
 	h1 {
 		font-size: 25px;
 	}
 
 	.dict-type {
-	font-family: 'Lora', serif;
-	color: #D3D3D3;
-	line-height: 175%;
-	font-size: 25px;
-	font-style: italic;
+		font-family: 'Lora', serif;
+		color: #D3D3D3;
+		line-height: 175%;
+		font-size: 25px;
+		font-style: italic;
 	}
+
+	.center-block {  
+    	width:275px;  
+    	padding:10px;  
+    } 
+
+    .container {
+    	margin-right: 10px;
+    	margin-left: 10px;
+    }
 
 }
 
 
+@media only screen and (min-device-width : 375px) and (max-device-width : 568px) {
+	h1 {
+		font-size: 25px;
+	}
 
+	.dict-type {
+		font-family: 'Lora', serif;
+		color: #D3D3D3;
+		line-height: 175%;
+		font-size: 25px;
+		font-style: italic;
+	}
 
+	.center-block {  
+    	width: 300px;  
+   	 	padding: 10px;  
+    } 
 
+    .container {
+    	margin-right: 10px;
+    	margin-left: 10px;
+    }
 
+    .navbar-text {
+		text-align: center;
+		font-size: 10px; 
+	}
+
+}

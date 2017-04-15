@@ -1,6 +1,6 @@
 
 // =============================================
-
+var word ='';
 // Initialize Firebase
 var config = {
     apiKey: "AIzaSyBHzsuJjRTjI63IifVncdfhyav-GYuzVR0",
@@ -29,13 +29,14 @@ $('#search').on("click", function() {
 
 
     //catches user input, trims white space on ends, and makes it all lower case
-    var word = ($('#input').val().trim()).toLowerCase();
+    word = ($('#input').val().trim()).toLowerCase();
 
     //all this does is clear the text form after the search button is activated.
     //it sets the value of the html element with id #input to an empty string
     $('#input').val('');
 
     $('#add-to-favorites').on("click", function() {
+        
         event.preventDefault();
 
         //if the word variable is not an empty string, the push it into the favorite words
@@ -51,14 +52,13 @@ $('#search').on("click", function() {
                 timeStamp: + new Date()
             });
 
+            word = '';
             alertify.success("Word added to favorites.");
 
             $('#add-to-favorites').css("color", "#ffd72f");
 
             console.log("sent");
-            console.log("=========");
-
-            word = '';
+            console.log("========="); 
 
         }
 

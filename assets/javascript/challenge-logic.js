@@ -37,24 +37,20 @@ wordsList = [
 	"sobriquet"
 ];
 
-var definition = '';
-var randWord = ''; 
-// wordsList[Math.floor(Math.random() *  wordsList.length)];
-resetDailyChallenge();	
+var randWord = '';
 var isChallengeComplete = false;
-var timeCreated = Date.now(); 
 
-var newObj = {
-	randWord: randWord,
-	timeCreated: timeCreated
-};
+//picks new word from array and sets it to local storage
+if(!localStorage.getItem("word")){
+	selectAndSetNewWord();
+}
+
+
+setInterval(checkForTimeOut, 1000*10);
+
 
 console.log("from local array: " + randWord);
 
-var queryURL = 'https://fathomless-plains-61908.herokuapp.com/dictionary/entries/en/' + "" + randWord + "";
-
-//sends stringified object to localStorage
-localStorage.setItem("word", JSON.stringify(newObj));
 
 //retrieves stringified object from local storage and makes it an object
 //so that we may access its properties.
@@ -62,16 +58,22 @@ var tempWord = localStorage.getItem('word');
 tempWord = JSON.parse(tempWord);
 console.log("from local storage: " + tempWord.randWord + " | time stamp: " + tempWord.timeCreated);
 
-$('#challengeWord').html("Today's challenge word is: " +  '<span id="challenge-word" data-toggle="tooltip">' + tempWord.randWord + '</span>');
+var tmp = '<a id="a-tag" data-toggle="tooltip" data-content="content in here">' + tempWord.randWord + '</a>';
 
+
+
+
+$('#challengeWord').html("Today's challenge word is: " +  '<span id="challenge-word">' + tmp + '</span>');
 
 
 //as of now, it resets every 24 hours since NOW. gotta figure out how to make it
 //reset every 24 hours since a fixed time. like, 12 AM for instance. 
-setInterval(resetDailyChallenge, 86400000);
+	// setInterval(resetDailyChallenge, 1000*10);	
 // ---> IF YOU SET THIS TO THE NUMBER OF MILISECONDS IN A DAY, A NEW WORD
 // //WILL BE SHOWN EVER 24 HOURS 
 // 86400000 num of milliseconds in a day
+
+var queryURL = 'https://fathomless-plains-61908.herokuapp.com/dictionary/entries/en/' + "" + randWord + "";
 
 $.ajax({
         url: queryURL,
@@ -85,6 +87,13 @@ $.ajax({
         console.log(definition);
         $('#challenge-word').attr("title", definition);
       });
+
+    $("#define").on("click", function(){
+    	$("#defined").html("<p></p>" + "*" + definition + "<p></p>");
+    })
+    $("#infoIcon").on("click",function(){
+    	alertify.success("Challenge yourself by trying to use this word at least once today!");
+    })
 
 $('#submit-challenge').on("click", function(){
 
@@ -144,8 +153,12 @@ $('#submit-challenge').on("click", function(){
 //functions
 
 function resetDailyChallenge(){
-	randWord = wordsList[Math.floor(Math.random() *  wordsList.length)];
-	$('#challenge-word').html(randWord);
+	console.log("beginning of function");
+	// randWord = wordsList[Math.floor(Math.random() *  wordsList.length)];
+	selectAndSetNewWord();
+
+
+	$('#challenge-word').html('<a>' + randWord + '</a>');
 	isChallengeComplete = false;
 	console.log(randWord);
 	$("#status").html("<b>incomplete</b>");
@@ -155,9 +168,35 @@ function resetDailyChallenge(){
 
 function checkForTimeOut(){
 
+	var word = localStorage.getItem('word');
+	word = JSON.parse(word);
+
 	var currentTime = Date.now();
-	// var currentItem = 
-
-}
+	var currentItem = word;
 
 
+	var elapseTime = currentTime - word.timeCreated;
+
+	if(elapseTime > 86400000){
+		resetDailyChallenge();
+		return true;
+	}else{
+		console.log('no timeout');
+	}
+	
+
+};
+
+function selectAndSetNewWord(){
+	randWord = wordsList[Math.floor(Math.random() *  wordsList.length)];
+	var timeCreated = Date.now();
+
+	var newObj = {
+		randWord: randWord,
+		timeCreated: timeCreated
+	};
+
+	//sends stringified object to localStorage
+	localStorage.setItem("word", JSON.stringify(newObj));
+
+};

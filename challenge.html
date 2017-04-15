@@ -8,6 +8,7 @@
 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
 	<link rel="stylesheet" href="assets/css/font-awesome.css">
 
@@ -17,15 +18,18 @@
 	<!-- To ensure proper rendering and touch zooming -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">  
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+	<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>  
 
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script> 
 
 	<script src="https://use.fontawesome.com/559c51d706.js"></script>
 	
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+
+	<!-- alertify.js -->
+	<script src="https://cdn.rawgit.com/alertifyjs/alertify.js/v1.0.10/dist/js/alertify.js"></script>
 
 	<script src="http://code.responsivevoice.org/responsivevoice.js"></script>
 
@@ -34,24 +38,31 @@
 
 <body>
 
+	<!-- navigation menu -->
 	<nav class="navbar navbar-inverse nav-style navbar-fixed-top">
 
 	 	<div class="container-fluid">
+
 	   		<div class="navbar-header">
+
 	     		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
 		       		<span class="icon-bar"></span>
 		       		<span class="icon-bar"></span>
-		       		<span class="icon-bar"></span>                        
+		       		<span class="icon-bar"></span>     
 	      		</button>
+
 	      		<a class="navbar-brand" href="main_2.html">Word Up</a>
+
 	    	</div>
 
 	    	<div class="collapse navbar-collapse navbar-right" id="myNavbar">
+
 	      		<ul class="nav navbar-nav">
-	       			<li><a href="main_2.html"><span class="glyphicon glyphicon-search" aria-hidden="true"></span>&nbsp; Search</a></li>
-	        		<li><a href="favorite.html"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>&nbsp; Favorites</a></li>
+	       			<li><a href="main_2.html"><i class="fa fa-search" aria-hidden="true"></i>&nbsp; Search</a></li>
+	        		<li><a href="favorite.html"><i class="fa fa-star" aria-hidden="true"></i>&nbsp; Favorites</a></li>
 	        		<li class="active"><a href="challenge.html"><i class="fa fa-trophy" aria-hidden="true"></i>&nbsp; Challenge</a></li>
 	      		</ul>
+
 	   		 </div>
 
 	  	</div>
@@ -59,48 +70,78 @@
 	</nav>
 
 
+	<!-- container for page info -->
 	<div class="container">
+
 		<div class="row">
-			<div class="col-md-5"></div>
-				<div class="col-md-4">
+
+			<div class="center-block">
+
 					<h1><i class="fa fa-trophy .glyphstyle2" aria-hidden="true"></i>&nbsp; Word Challenge</h1>
-					<h5 style="text-decoration: underline">Try using this word at least once today!</h5>
-
-					
-					<div id="challengeWord"></div>
-
-					<form>
-						<label>Try using the word in a sentence...</label>
-						<input placeholder="Type your sentence here" type="text" id="sentence">
-						<button id="submit-challenge">Submit</button>
-					</form>
-					</br>
 					</br>
 
-					<p>Daily Challenge is <span id="status" class="color"><b id="color">incomplete</b></span></p>
+						<div id="challengeWord"></div>
 
-					<div id="images">
+						<div id="defined" style= "margin-bottom: 15px">
+
+							<button id="define">Get Definition</button>
+
+						</div>
+
+							<form>
+								<label>Try using the word in a sentence...</label>
+
+								<input placeholder="Type your sentence here" type="text" id="sentence">
+								<button id="submit-challenge">Submit</button>
+							</form>
+
+								</br>
+
+								</br>
+
+								<p>Daily Challenge is <span id="status" class="color"><b id="color">incomplete</b></span></p>
+
+								<div id="images"></div>
 
 
 
 					<!-- when this button is selected it will post to social media that they were able to successfully use the challenge word today . will need to look into using log in with slack to make it easier for user to post-->
 					<!-- <button class="button-style-2" id="postToSocialMedia">post</button> -->
 
-				<div class="col-md-3"></div>
+			</div>
 				
 		</div>
+
 	</div>
+  
+
+	<!-- footer -->
+<!--     <div class="navbar navbar-default navbar-fixed-bottom">
+
+        <div class="container">
+
+            <p class="navbar-text">&copy; 2017 - Team Gosling</p>
+      
+        </div>
+    
+    </div> -->
 
 
 	<script src="https://code.jquery.com/jquery.js"></script>
+
 	<script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
 	<!-- <script type="text/javascript" src="assets/javascript/game.js"></script> -->
 
 	<!-- add javascript to individual page -->
 	<script type="text/javascript" src="assets/javascript/challenge-logic.js"></script>
 
+	<!-- Include all compiled plugins (below), or include individual files as needed -->  
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
 	<!-- alertify.js -->
-	
 	<script src="https://cdn.rawgit.com/alertifyjs/alertify.js/v1.0.10/dist/js/alertify.js"></script>
 
 

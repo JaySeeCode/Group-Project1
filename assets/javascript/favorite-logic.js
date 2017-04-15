@@ -1,56 +1,55 @@
-// Initialize Firebase
-var config = {
-	apiKey: "AIzaSyBHzsuJjRTjI63IifVncdfhyav-GYuzVR0",
-	authDomain: "team-gosling.firebaseapp.com",
-	databaseURL: "https://team-gosling.firebaseio.com",
-	projectId: "team-gosling",
-	storageBucket: "team-gosling.appspot.com",
-	messagingSenderId: "440069700680"
-};
-firebase.initializeApp(config);
+$(document).ready(function(){
 
-var database = firebase.database();
+	$(function(){
+		$('#accord').accordion();
+	});
 
-database.ref().on("value", function(childSnapshot){
+	// Initialize Firebase
+	var config = {
+		apiKey: "AIzaSyBHzsuJjRTjI63IifVncdfhyav-GYuzVR0",
+		authDomain: "team-gosling.firebaseapp.com",
+		databaseURL: "https://team-gosling.firebaseio.com",
+		projectId: "team-gosling",
+		storageBucket: "team-gosling.appspot.com",
+		messagingSenderId: "440069700680"
+	};
+	firebase.initializeApp(config);
 
-	var sv = childSnapshot.val();
+	var database = firebase.database();
 
-	var svArr = Object.keys(sv).map(function(arr){
+	database.ref().on("value", function(childSnapshot){
+
+		var sv = childSnapshot.val();
+
+		var svArr = Object.keys(sv).map(function(arr){
 			var temp = sv[arr];
 			temp.key = arr;
 			return temp;
-	});
+		});
 
-	svArr.sort(function(a, b){
-		return a.timeStamp - b.timeStamp;
-	});
+		svArr.sort(function(a, b){
+			return a.timeStamp - b.timeStamp;
+		});
 
-	// var key = sv.favoriteWordEntry;
+
 
 	console.log(sv);
-	// console.log(sv.favoriteWordEntry);
+	
 	console.log("svArr: ", svArr);
 
 	console.log(Object.keys(childSnapshot.val()));
 
 
 	$('#list').empty();
+	
+	
 	for (var i = 0; i < svArr.length; i++) {
 
 		renderButton(svArr[i]);
 		
 	};
 
-
-	// var $button = $('<button />');
-	// $button.addClass("removeButton");
-	// $button.attr("key", key);
-	// $button.text(" X ");
-
-	// var $entry = '<li>' + key + '</li>';
-
-	// $('#list').prepend($entry, $button);
-
+	
 	$('.removeButton').on("click", function(){
 
 		console.log("here");
@@ -59,6 +58,7 @@ database.ref().on("value", function(childSnapshot){
 
 	});
 
+
 	function renderButton(arr){
 		var $button = $('<button />');
 		$button.addClass("removeButton");
@@ -66,9 +66,12 @@ database.ref().on("value", function(childSnapshot){
 		$button.attr("value", arr.favoriteWordEntry);
 		$button.text('X');
 
-		$entry = '<li>' + arr.favoriteWordEntry + '</li>';
+		$entry = $('<li style="font-size:10px; padding-left:10px; ">' + '<span>'+ arr.favoriteWordEntry+ '</span>'  + '</li>');
+		$entry.append($button);
 
-		$('#list').prepend($entry, $button);
+		$('#list').prepend($entry);
 	};
 
+
+});
 });
